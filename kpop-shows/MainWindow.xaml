@@ -1,0 +1,39 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:kpop_shows"
+        xmlns:Helpers="clr-namespace:kpop_shows.Helpers"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"  
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        x:Class="kpop_shows.MainWindow" x:Name="Window"
+        Title="KPOP Music Shows" SizeToContent="Width" MinWidth="300" Height="800" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:MainWindowCommands.ShowDate"
+                        Executed="ShowDate_Executed" CanExecute="ShowDate_CanExecute" />
+    </Window.CommandBindings>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <StackPanel.Resources>
+                <system:Double x:Key="DateColumnWidth">100</system:Double>
+            </StackPanel.Resources>
+
+            <ItemsControl ItemsSource="{Binding BackgroundParser.MusicShowInstances}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="{StaticResource DateColumnWidth}">
+                                <TextBlock>
+                                    <Hyperlink Command="local:MainWindowCommands.ShowDate" CommandParameter="{Binding Path=.}">
+                                        <TextBlock Text="{Binding Path=Date, StringFormat=yyyy-MM-dd}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                            </Label>
+                            <TextBlock Text="{Binding Path=MusicShow.Name}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

@@ -1,0 +1,9 @@
+﻿<Window x:Class="kpop_shows.ShowWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:kpop_shows"
+        Title="Show Details">
+    <Grid>
+        
+    </Grid>
+</Window>
