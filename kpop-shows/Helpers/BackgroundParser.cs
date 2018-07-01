@@ -25,8 +25,8 @@ namespace kpop_shows.Helpers
     public class MusicShowInstanceStageType
     {
         public string StageTypeName { get; set; }
-        public ObservableConcurrentBag<string> Columns;
-        public ObservableConcurrentBag<MusicShowStage> Stages;
+        public ObservableConcurrentBag<string> Columns { get; set; }
+        public ObservableConcurrentBag<MusicShowStage> Stages { get; set; }
 
         public MusicShowInstanceStageType(Dispatcher dispatcher)
         {
@@ -49,7 +49,7 @@ namespace kpop_shows.Helpers
     public class MusicShow
     {
         public string URL { get; set; }
-        public string Name { get; set; }
+        public Show Show { get; set; }
         public ObservableConcurrentBag<MusicShowInstance> Instances { get; set; }
 
         public MusicShow(Dispatcher dispatcher) =>
@@ -66,7 +66,8 @@ namespace kpop_shows.Helpers
             MusicShowInstances = new ObservableConcurrentBag<MusicShowInstance>(dispatcher);
             MusicShows = new ObservableConcurrentBag<MusicShow>(dispatcher)
             {
-                new MusicShow(dispatcher) { URL = "https://www.reddit.com/r/kpop/wiki/music-shows/the-show", Name = "SBS MTV The Show" }
+                new MusicShow(dispatcher) { URL = "https://www.reddit.com/r/kpop/wiki/music-shows/the-show", Show = Show.TheShow },
+                new MusicShow(dispatcher) { URL = "https://www.reddit.com/r/kpop/wiki/music-shows/show-champion", Show = Show.ShowChampion }
             };
 
             foreach (var show in MusicShows)

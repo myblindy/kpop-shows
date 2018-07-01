@@ -2,8 +2,74 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:kpop_shows"
-        Title="Show Details">
-    <Grid>
-        
-    </Grid>
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:myctl="clr-namespace:kpop_shows.Controls"
+        Title="Show Details" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <system:Double x:Key="GroupNameColumnWidth">300</system:Double>
+        <system:Double x:Key="SongNameColumnWidth">300</system:Double>
+        <system:Double x:Key="CustomColumnWidth">200</system:Double>
+    </Window.Resources>
+
+    <ItemsControl ItemsSource="{Binding StageTypes}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                    <TextBlock Text="{Binding StageTypeName}" FontSize="20" />
+
+                    <!-- columns -->
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Group" Width="{StaticResource GroupNameColumnWidth}" 
+                                   FontWeight="Bold" HorizontalAlignment="Center" />
+                        <TextBlock Text="Song" Width="{StaticResource SongNameColumnWidth}" 
+                                   FontWeight="Bold" HorizontalAlignment="Center" />
+                        <ItemsControl ItemsSource="{Binding Columns}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" Width="{StaticResource CustomColumnWidth}" 
+                                               FontWeight="Bold" HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- data -->
+                    <ItemsControl ItemsSource="{Binding Stages}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!-- each row's data -->
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding GroupName}" Width="{StaticResource GroupNameColumnWidth}" />
+                                    <TextBlock Text="{Binding SongName}" Width="{StaticResource SongNameColumnWidth}" />
+                                    <ItemsControl ItemsSource="{Binding Links}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <!--<TextBlock Text="{Binding}" Width="{StaticResource CustomColumnWidth}" />-->
+                                                <myctl:TextLinks Text="{Binding}" Width="{StaticResource CustomColumnWidth}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 </Window>

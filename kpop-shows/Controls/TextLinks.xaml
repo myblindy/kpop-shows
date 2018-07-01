@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="kpop_shows.Controls.TextLinks"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:kpop_shows.Controls"
+             x:Name="TextLinksControl">
+    <ItemsControl ItemsSource="{Binding InnerControls, ElementName=TextLinksControl}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
+</UserControl>

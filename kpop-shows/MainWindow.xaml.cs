@@ -30,10 +30,8 @@ namespace kpop_shows
             DataContext = this;
         }
 
-        private void ShowDate_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-
-        }
+        private void ShowDate_Executed(object sender, ExecutedRoutedEventArgs e) =>
+            new ShowWindow((MusicShowInstance)e.Parameter) { Owner = this }.ShowDialog();
 
         private void ShowDate_CanExecute(object sender, CanExecuteRoutedEventArgs e) =>
             e.CanExecute = e.Parameter is MusicShowInstance;

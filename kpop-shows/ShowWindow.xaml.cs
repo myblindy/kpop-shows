@@ -1,4 +1,5 @@
-﻿using System;
+﻿using kpop_shows.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace kpop_shows
     /// </summary>
     public partial class ShowWindow : Window
     {
-        public ShowWindow()
+        public ShowWindow(MusicShowInstance type)
         {
             InitializeComponent();
+            DataContext = type;
         }
     }
 }
